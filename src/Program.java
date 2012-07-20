@@ -20,18 +20,11 @@ public class Program
 	
 	public static void run()
 	{
-		Map<Map,ArrayList<String>> anagramMap = new HashMap<Map,ArrayList<String>>();
+		Map<LetterMap,ArrayList<String>> anagramMap = new HashMap<LetterMap,ArrayList<String>>();
 		
 		for(Object word : dictionary)
         {
-			char[] wordArray = ((String)word).toCharArray();
-			Map<Character,Integer> letterMap = new HashMap<Character,Integer>();
-	    	
-			for(char c : wordArray)
-	        {
-		        if(null == letterMap.get(c)) letterMap.put(c, 1);
-		        else letterMap.put(c, ((Integer)letterMap.get(c)) + 1);
-	        }
+			LetterMap letterMap = LetterMap.getInstanceFor((String)word);
 			
 			if(null == anagramMap.get(letterMap)) 
 			{
